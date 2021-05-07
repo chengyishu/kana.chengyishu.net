@@ -119,13 +119,6 @@
             border-radius: 3px;
             background: #33AC8E;
         }
-
-        .footer {
-            padding-top: .96rem;
-            text-align: center;
-            font-size: .28rem;
-            color: #b8c4cc;
-        }
     </style>
 </head>
 
@@ -154,6 +147,8 @@
                     this.oView_anthor = $('.view-anthor');
                     this.oVowel = $('.view-vowel');
                     this.oBtn_change = $('.btn-change');
+                    // 发音
+                    this.oAudio = null;
 
                     this.initEvent();
                     this.renderView();
@@ -179,10 +174,14 @@
                     this.oView_main.innerHTML = this[key][index];
                     this.oView_anthor.innerHTML = this[anthor][index];
                     this.oVowel.innerHTML = this.vowel[index];
+                    // 发音
+                    this.oAudio = new Audio('https://res.hjfile.cn/pt/m/jp/50yin/audio/' + this["hiragana"][index] + '.mp3');
                 },
                 showMore: function () {
                     this.oView_anthor.classList.remove('hide');
                     this.oVowel.classList.remove('hide');
+                    // 发音
+                    this.oAudio.play();
                 },
                 hideMore: function () {
                     this.oView_anthor.classList.add('hide');
