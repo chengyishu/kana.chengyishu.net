@@ -1,8 +1,8 @@
 # 日语假名练习
 
-访问：[**https://kana.demo.chengyishu.net**](https://github.com/chengyishu/kana.demo.chengyishu.net)
+访问：[**日语假名练习**](https://kana.demo.chengyishu.net)
 
-参考：[**沪江日语五十音图**](https://jp.hjenglish.com/subject/pronounce/)
+参考：[**日语五十音图**](https://jp.hjenglish.com/subject/pronounce/)
 
 ![](images/平假名+片假名.png)
 
