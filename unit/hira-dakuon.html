@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>平假名浊音がざだば+半浊音ぱ | 日语假名练习</title>
+
+    <script type="text/javascript">
+        var isIOS = navigator.userAgent.match(/iphone|ipod|ipad/gi);
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                dpr = isIOS ? Math.min(win.devicePixelRatio, 3) : 1,
+                scale = 1 / dpr,
+                resizeEvt = 'orientationchange' in win ? 'orientationchange' : 'resize';
+            docEl.dataset.dpr = dpr;
+            var metaEl = doc.createElement('meta');
+            metaEl.name = 'viewport';
+            metaEl.content = 'initial-scale=' + scale + ',maximum-scale=' + scale + ', minimum-scale=' + scale + ", user-scalable=no";
+            docEl.firstElementChild.appendChild(metaEl);
+            var recalc = function () {
+                var width = docEl.clientWidth;
+                docEl.style.fontSize = 100 * (width / 640) + 'px';
+            };
+            recalc();
+            win.addEventListener(resizeEvt, recalc, false);
+        })(document, window);
+    </script>
+
+    <link rel="stylesheet"
+        href="https://fonts.font.im/css2?family=Noto+Serif&family=Noto+Serif+JP:wght@500&family=Noto+Serif+SC:wght@500&display=swap">
+    <style type="text/css">
+        html,
+        body,
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            -webkit-text-size-adjust: none;
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        body {
+            background-color: #F4F9F8;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .content {
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .view {
+            position: relative;
+            margin: .4rem auto .19rem auto;
+            width: 5.76rem;
+            height: 5.76rem;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
+            background-color: #E6EAE7;
+            color: #33AC8E;
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .view-main,
+        .view-anthor,
+        .view-vowel {
+            position: absolute;
+        }
+
+        .view-main {
+            top: 46%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            font-size: 2.4rem;
+        }
+
+        .view-main.yoon {
+            width: 85%;
+        }
+
+        .view-anthor,
+        .view-vowel {
+            height: 1.92rem;
+            line-height: 1.92rem;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .view-anthor {
+            left: 0.3rem;
+            bottom: 0rem;
+        }
+
+        .view-vowel {
+            right: 0.4rem;
+            top: -0.2rem;
+            font-family: 'Noto Serif', serif;
+        }
+
+        .btn {
+            border: 0;
+        }
+
+        .btn-change {
+            display: block;
+            width: 5.76rem;
+            height: 1.26rem;
+            margin: 0 auto .4rem auto;
+            padding: 0;
+            font: bold .4rem 'arial';
+            color: #fff;
+            border-radius: 3px;
+            background: #33AC8E;
+        }
+
+        .zh {
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .ja {
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .en {
+            font-family: 'Noto Serif', serif;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="content">
+        <div class="view">
+            <div class="view-main"></div>
+            <div class="view-anthor hide"></div>
+            <div class="view-vowel hide"></div>
+        </div>
+        <button class="btn btn-change ja">次へ</button>
+    </div>
+
+    <script type="text/javascript">
+        (function () {
+            var page = {
+                init: function () {
+                    this.hiragana = ["が", "ぎ", "ぐ", "げ", "ご", "ざ", "じ", "ず", "ぜ", "ぞ", "だ", "ぢ", "づ", "で", "ど", "ば", "び", "ぶ", "べ", "ぼ", "ぱ", "ぴ", "ぷ", "ぺ", "ぽ"];
+                    this.katakana = ["ガ", "ギ", "グ", "ゲ", "ゴ", "ザ", "ジ", "ズ", "ゼ", "ゾ", "ダ", "ヂ", "ず", "デ", "ド", "バ", "ビ", "ブ", "ベ", "ボ", "パ", "ピ", "プ", "ぺ", "ポ"];
+                    this.vowel = ["ga", "gi", "gu", "ge", "go", "za", "ji", "zu", "ze", "zo", "da", "ji", "zu", "de", "do", "ba", "bi", "bu", "be", "bo", "pa", "pi", "pu", "pe", "po"];
+                    this.now = -1;
+
+                    this.oView = $('.view');
+                    this.oView_main = $('.view-main');
+                    this.oView_anthor = $('.view-anthor');
+                    this.oVowel = $('.view-vowel');
+                    this.oBtn_change = $('.btn-change');
+                    // 发音
+                    this.oAudio = null;
+
+                    this.initEvent();
+                    this.renderView();
+                },
+                initEvent: function () {
+                    this.oView.addEventListener('click', this.showMore.bind(this), false);
+                    this.oBtn_change.addEventListener('click', this.renderView.bind(this), false);
+                },
+                randomIndex: function () {
+                    var nRandom = Math.floor(Math.random() * this.hiragana.length);
+                    if (nRandom != this.now) {
+                        this.now = nRandom;
+                        return nRandom + '';
+                    } else {
+                        return this.randomIndex();
+                    }
+                },
+                renderView: function () {
+                    var index = this.randomIndex();
+                    // 拗音加宽显示
+                    if (this["hiragana"][index].length == 2) {
+                        document.getElementsByClassName('view-main')[0].classList.add('yoon');
+                    } else {
+                        document.getElementsByClassName('view-main')[0].classList.remove('yoon');
+                    }
+                    var key = 'hiragana';
+                    var anthor = key == "hiragana" ? 'katakana' : 'hiragana';
+                    this.hideMore();
+                    this.oView_main.innerHTML = this[key][index];
+                    this.oView_anthor.innerHTML = this[anthor][index];
+                    this.oVowel.innerHTML = this.vowel[index];
+                    // 发音
+                    this.oAudio = new Audio('/audio/' + this["hiragana"][index] + '.mp3');
+                },
+                showMore: function () {
+                    this.oView_anthor.classList.remove('hide');
+                    this.oVowel.classList.remove('hide');
+                    // 发音
+                    this.oAudio.play();
+                },
+                hideMore: function () {
+                    this.oView_anthor.classList.add('hide');
+                    this.oVowel.classList.add('hide');
+                }
+            };
+
+            page.init();
+
+            function $(s) {
+                return document.querySelector(s);
+            }
+        })(window);
+    </script>
+</body>
+
+</html>
