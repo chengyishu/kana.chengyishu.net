@@ -28,6 +28,8 @@
         })(document, window);
     </script>
 
+    <link rel="stylesheet"
+        href="https://fonts.font.im/css2?family=Noto+Serif&family=Noto+Serif+JP:wght@500&family=Noto+Serif+SC:wght@500&display=swap">
     <style type="text/css">
         html,
         body,
@@ -38,7 +40,7 @@
 
         html {
             -webkit-text-size-adjust: none;
-            font-family: 'Microsoft YaHei';
+            font-family: 'Noto Serif JP', serif;
         }
 
         body {
@@ -66,7 +68,7 @@
             -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
             background-color: #E6EAE7;
             color: #33AC8E;
-            font-family: "ヒラギノ角ゴ Pro W3", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif
+            font-family: 'Noto Serif JP', serif;
         }
 
         .view-main,
@@ -84,12 +86,11 @@
         }
 
         .view-main.yoon {
-            width: 75%;
+            width: 85%;
         }
 
         .view-anthor,
         .view-vowel {
-            width: 1.92rem;
             height: 1.92rem;
             line-height: 1.92rem;
             text-align: center;
@@ -104,6 +105,7 @@
         .view-vowel {
             right: 0.4rem;
             top: -0.2rem;
+            font-family: 'Noto Serif', serif;
         }
 
         .btn {
@@ -121,6 +123,18 @@
             border-radius: 3px;
             background: #33AC8E;
         }
+
+        .zh {
+            font-family: 'Noto Serif SC', serif;
+        }
+
+        .ja {
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .en {
+            font-family: 'Noto Serif', serif;
+        }
     </style>
 </head>
 
@@ -132,7 +146,7 @@
             <div class="view-anthor hide"></div>
             <div class="view-vowel hide"></div>
         </div>
-        <button class="btn btn-change">次へ</button>
+        <button class="btn btn-change ja">次へ</button>
     </div>
 
     <script type="text/javascript">
@@ -183,7 +197,7 @@
                     this.oView_anthor.innerHTML = this[anthor][index];
                     this.oVowel.innerHTML = this.vowel[index];
                     // 发音
-                    this.oAudio = new Audio('https://res.hjfile.cn/pt/m/jp/50yin/audio/' + this["hiragana"][index] + '.mp3');
+                    this.oAudio = new Audio('audio/' + this["hiragana"][index] + '.mp3');
                 },
                 showMore: function () {
                     this.oView_anthor.classList.remove('hide');
