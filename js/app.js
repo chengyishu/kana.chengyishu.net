@@ -50,11 +50,6 @@
                     app.oView_anthor = document.querySelector('.view-anthor');
                     app.oVowel = document.querySelector('.view-vowel');
                     app.oBtn_change = document.querySelector('.btn-change');
-                    // 发音
-                    app.oAudios = [];
-                    for (var index = 0; index < app.hiragana.length; index++) {
-                        app.oAudios.push(new Audio('/audio/' + app.hiragana[index] + '.mp3'));
-                    }
                     app.initEvent();
                     app.renderView();
                 }
@@ -91,7 +86,7 @@
             this.oView_anthor.innerHTML = this[anthor][index];
             this.oVowel.innerHTML = this.vowel[index];
             // 发音
-            this.oAudio = this.oAudios[index];
+            this.oAudio = new Audio('/audio/' + this.hiragana[index] + '.mp3');
         },
         showMore: function () {
             this.oView_anthor.classList.remove('hide');
